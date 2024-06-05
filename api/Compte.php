@@ -28,10 +28,29 @@
 
                 if($compteRecuperere) {
                     echo json_encode($compteRecuperere, JSON_PRETTY_PRINT);
+                    http_response_code(200); 
                 }
                 else {
                     echo json_encode([
                         'message' => "Aucun compte ne correspond à cette adresse email"
+                    ], JSON_PRETTY_PRINT); 
+                }
+                break;
+            case 'PUT':
+                // endpoint : localhost/BiblioPlaisir/api/Compte.php/{id} 
+                $id = recupererParametreSimple($_SERVER['REQUEST_URI']); 
+                $nouveauDonnees = json_decode(file_get_contents('php://input'), true); 
+                $compteModifie = $compte->modifier($id, $nouveauDonnees); 
+
+                if($compteModifie) {
+                    echo json_encode([
+                        'message' => "Modification effectué"
+                    ], JSON_PRETTY_PRINT);
+                    http_response_code(200); 
+                }
+                else {
+                    echo json_encode([
+                        'message' => "Erreur de modification" 
                     ], JSON_PRETTY_PRINT); 
                 }
                 break; 
