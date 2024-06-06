@@ -124,6 +124,7 @@ sinon
 POST localhost/BiblioPlaisir/api/Lecteur.php
 ```
 
+Body
 ```json
 {
     "id_compte": "3"
@@ -143,5 +144,48 @@ Sinon
 ```json
 {
     "message": "Erreur d'ajout du lecteur"
+}
+```
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Lecteur.php/{id}</span> : Récupère un lecteur par son id  
+
+```raw
+GET localhost/BiblioPlaisir/api/Lecteur.php/2
+```
+
+Reponse 
+```json
+{
+    "id_lecteur": 2,
+    "id_compte": 2
+}
+```
+
+ou 
+```json
+{
+    "message": "Aucun lecteur trouvé"
+}
+```
+
+- <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Lecteur.php/{id}</span> : Supprimer un lecteur par son id 
+
+```raw
+DELETE localhost/BiblioPlaisir/api/Lecteur.php/{id}
+```
+
+Reponse 
+
+```json
+{
+    "message": "Lecteur supprimé avec succès"
+}
+```
+
+ou bien 
+
+```json
+{
+    "message": "Erreur de suppression du lecteur"
 }
 ```

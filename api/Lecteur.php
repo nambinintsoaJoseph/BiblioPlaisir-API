@@ -36,7 +36,38 @@
                     ], JSON_PRETTY_PRINT);
                 }
                 break; 
+            CASE 'GET':
+                // endpoint : GET localhost/BiblioPlaisir/api/Lecteur.php/{id}
+                $id_lecteur = recupererParametreSimple($_SERVER['REQUEST_URI']);
+                $lecteurRecupere = $lecteur->recuperer($id_lecteur); 
 
+                if($lecteurRecupere) {
+                    echo json_encode($lecteurRecupere, JSON_PRETTY_PRINT);
+                    http_response_code(200); 
+                }
+                else {
+                    echo json_encode([
+                        'message' => "Aucun lecteur trouvé"
+                    ], JSON_PRETTY_PRINT); 
+                    http_response_code(200); 
+                }
+                break;
+            case 'DELETE':
+                // endpoint : DELETE localhost/BiblioPlaisir/api/Lecteur.php/{id}
+                $id_lecteur = recupererParametreSimple($_SERVER['REQUEST_URI']);
+                $lecteurSupprime = $lecteur->supprimer($id_lecteur); 
+
+                if($lecteurSupprime) {
+                    echo json_encode([
+                        'message' => "Lecteur supprimé avec succès"
+                    ], JSON_PRETTY_PRINT);
+                }
+                else {
+                    echo json_encode([
+                        'message' => "Erreur de suppression du lecteur"
+                    ], JSON_PRETTY_PRINT);
+                }
+                break; 
         }
 
     }
