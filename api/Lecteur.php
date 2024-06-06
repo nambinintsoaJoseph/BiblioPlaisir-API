@@ -71,5 +71,17 @@
         }
 
     }
+    else {
+        if($methode == 'PUT') {
+            echo json_encode([
+                'message' => "La méthode PUT n'est pas autorisée"
+            ], JSON_PRETTY_PRINT);
+        }
+        else {
+            echo json_encode([
+                'message' => "Cette méthode ne fait pas partie du standard du REST"
+            ], JSON_PRETTY_PRINT); 
+        }
+    }
 
 ?>

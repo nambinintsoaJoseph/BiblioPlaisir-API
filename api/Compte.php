@@ -69,6 +69,7 @@
                         'message' => "Erreur de création du compte"
                     ], JSON_PRETTY_PRINT); 
                 } 
+                break; 
             case 'DELETE': 
                 // endpoint : DELETE localhost/BiblioPlaisir/api/Compte.php/{id}
                 $id = recupererParametreSimple($_SERVER['REQUEST_URI']); 
@@ -84,6 +85,7 @@
                         'message' => "Erreur de suppression du compte"
                     ], JSON_PRETTY_PRINT);
                 }
+                break;
         }
     }
     else {

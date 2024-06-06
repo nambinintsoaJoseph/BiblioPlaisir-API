@@ -189,3 +189,77 @@ ou bien
     "message": "Erreur de suppression du lecteur"
 }
 ```
+
+<h3>Auteur</h3>
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Auteur.php/{id}</span> : Recuperer un auteur par son id
+
+```raw
+GET localhost/BiblioPlaisir/api/Auteur.php/{id}
+```
+
+Reponse JSON : 
+
+```json
+{
+    "id_auteur": 2,
+    "id_compte": 2
+}
+```
+
+ou bien 
+
+```json
+{
+    "message": "Aucun auteur trouvé"
+}
+```
+
+- <span style="color: #EF4;">POST localhost/BiblioPlaisir/api/Auteur.php/{id}</span> : Créer un auteur
+
+```raw
+POST localhost/BiblioPlaisir/api/Auteur.php
+```
+
+Body 
+
+```json
+{
+	"id_compte": 7
+}
+```
+
+Reponse JSON 
+
+```json
+{
+    "message": "Auteur ajouté"
+}
+```
+
+ou bien 
+
+```json
+{
+    "message": "Erreur d'ajout de l'auteur"
+}
+```
+
+- <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Auteur.php/{id}</span> : Supprimer un auteur par son id
+
+```raw
+DELETE localhost/BiblioPlaisir/api/Auteur.php/{id}
+```
+
+```json
+{
+    "message": "Auteur supprimé avec succès"
+}
+```
+ou bien 
+
+```json
+{
+    "message": "Erreur de suppression du l'auteur"
+}
+```
