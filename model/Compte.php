@@ -66,6 +66,21 @@ class Compte {
             return false; 
         }
     }
-}
 
+    // endpoint : DELETE localhost/BiblioPlaisir/api/Compte.php/{id}
+    public function supprimer($id) {
+        $sql = "DELETE FROM Compte WHERE id_compte = :id"; 
+        $requetePreparee = $this->conn->prepare($sql); 
+        $requetePreparee->bindParam(':id', $id); 
+
+        $etat = $requetePreparee->execute(); 
+
+        if($etat) {
+            return true; 
+        }
+        else {
+            return false; 
+        }
+    }
+}
 ?>

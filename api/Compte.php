@@ -69,8 +69,26 @@
                         'message' => "Erreur de création du compte"
                     ], JSON_PRETTY_PRINT); 
                 } 
+            case 'DELETE': 
+                // endpoint : DELETE localhost/BiblioPlaisir/api/Compte.php/{id}
+                $id = recupererParametreSimple($_SERVER['REQUEST_URI']); 
+                $compteSupprime = $compte->supprimer($id); 
+
+                if($compteSupprime) {
+                    echo json_encode([
+                        'message' => "Compte supprimé"
+                    ], JSON_PRETTY_PRINT); 
+                }
+                else {
+                    echo json_encode([
+                        'message' => "Erreur de suppression du compte"
+                    ], JSON_PRETTY_PRINT);
+                }
         }
-
     }
-
+    else {
+        echo json_encode([
+            'message' => "Cette méthode ne fait pas partie du standard du REST"
+        ], JSON_PRETTY_PRINT); 
+    }
 ?>

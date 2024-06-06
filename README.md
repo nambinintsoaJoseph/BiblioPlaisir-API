@@ -93,3 +93,25 @@ Sinon
     "message": "Erreur de création du compte"
 }
 ```
+
+- <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Compte.php/{id}</span> : Supprimer un compte
+
+```raw
+DELETE localhost/BiblioPlaisir/api/Compte.php/4
+```
+
+Si la suppression fonctionne, la reponse en JSON est : 
+
+```json
+{
+    "message": "Compte supprimé"
+}
+```
+
+sinon 
+
+```json
+{
+    "message": "Erreur de suppression du compte"
+}
+```
