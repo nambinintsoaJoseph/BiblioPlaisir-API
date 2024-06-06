@@ -174,6 +174,61 @@ Réponse JSON :
 }
 ```
 
+- <span style="color: #EF4;">POST localhost/BiblioPlaisir/api/Vocabulaire.php</span> : Ajouter un vocabulaire 
+
+```raw
+POST localhost/BiblioPlaisir/api/Vocabulaire.php
+```
+
+BODY
+
+```json
+{
+	"id_lecteur": "3", 
+    "mot": "thermos", 
+    "definition_mot": "Récipient isolant conservant la température d'un liquide pendant quelques heures."
+}
+```
+
+Réponse JSON : 
+
+```json
+{
+    "message": "Nouveau vocabulaire ajouté"
+}
+```
+
+Sinon 
+
+```json
+{
+    "message": "Erreur d'ajout du vocabulaire"
+}
+```
+
+<hr>
+
+- <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Vocabulaire.php/{id_vocabulaire}</span> : Supprimer un vocabulaire par son id 
+
+```raw
+DELETE localhost/BiblioPlaisir/api/Vocabulaire.php/3
+```
+
+Reponse JSON : 
+
+```json
+{
+    "message": "Vocabulaire supprimé"
+}
+```
+
+Sinon 
+
+```json
+{
+    "message": "Erreur de suppression du vocabulaire"
+}
+```
 
 <hr>
 

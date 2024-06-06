@@ -35,5 +35,40 @@
             return $listeVocabulaire; 
         }
 
+        // endpoint : POST localhost/BiblioPlaisir/api/Vocabulaire.php/
+        public function ajouter($donnees) {
+            $sql = "INSERT INTO Vocabulaire(id_lecteur, mot, definition_mot) VALUES(:id_lecteur, :mot, :definition_mot);"; 
+
+            $requetePreparee = $this->conn->prepare($sql); 
+
+            $requetePreparee->bindParam(':id_lecteur', $donnees['id_lecteur']); 
+            $requetePreparee->bindParam(':mot', $donnees['mot']); 
+            $requetePreparee->bindParam(':definition_mot', $donnees['definition_mot']); 
+
+            $etat = $requetePreparee->execute(); 
+
+            if($etat) {
+                return true; 
+            }
+            else {
+                return false; 
+            }
+        }
+
+        // endpoint : DELETE localhost/BiblioPlaisir/api/Vocabulaire.php/{id_vocabulaire}
+        public function supprimer($id_vocabulaire) {
+            $sql = "DELETE FROM Vocabulaire WHERE id_vocabulaire = :id_vocabulaire;"; 
+
+            $requetePreparee = $this->conn->prepare($sql); 
+            $requetePreparee->bindParam(':id_vocabulaire', $id_vocabulaire); 
+            $etat = $requetePreparee->execute(); 
+
+            if($etat) {
+                return true; 
+            }
+            else {
+                return false; 
+            }
+        }
     }
 ?>

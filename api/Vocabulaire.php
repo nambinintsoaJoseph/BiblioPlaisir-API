@@ -37,6 +37,36 @@
                     echo json_encode($vocabulaireRecupere, JSON_PRETTY_PRINT); 
                 }
                 break; 
+            case 'POST':
+                $donneesVocabulaire = json_decode(file_get_contents('php://input'), true); 
+                $nouveauVocabulaire = $vocabulaire->ajouter($donneesVocabulaire); 
+
+                if($nouveauVocabulaire) {
+                    echo json_encode([
+                        'message' => "Nouveau vocabulaire ajouté"
+                    ], JSON_PRETTY_PRINT); 
+                }
+                else {
+                    echo json_encode([
+                        'message' => "Erreur d'ajout du vocabulaire" 
+                    ], JSON_PRETTY_PRINT); 
+                }
+                break;
+            case 'DELETE':
+                $id_vocabulaire = recupererParametreSimple($_SERVER['REQUEST_URI']); 
+                $vocabulaireSupprime = $vocabulaire->supprimer($id_vocabulaire); 
+                
+                if($vocabulaireSupprime) {
+                    echo json_encode([
+                        'message' => "Vocabulaire supprimé"
+                    ], JSON_PRETTY_PRINT); 
+                }
+                else {
+                    echo json_encode([
+                        'message' => "Erreur de suppression du vocabulaire"
+                    ], JSON_PRETTY_PRINT);
+                }
+                break; 
         }
     }
 ?>
