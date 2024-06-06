@@ -2,6 +2,8 @@
 
 <h3>Compte</h3>
 
+<hr>
+
 - <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Compte.php/{email}</span> :
 Récupère les informations d'un compte selon le paramètre {email}
 
@@ -24,6 +26,8 @@ Reponse (JSON):
     "message": "Compte trouv\u00e9"
 }
 ```
+
+<hr>
 
 - <span style="color: #EF4;">PUT localhost/BiblioPlaisir/api/Compte.php/{id}</span> : Modifier les informations d'un compte selon le paramètre {id}
 
@@ -58,6 +62,8 @@ Sinon :
     "message": "Erreur de modification"
 }
 ```
+
+<hr>
 
 - <span style="color: #EF4;">POST localhost/BiblioPlaisir/api/Compte.php</span> : Créer un nouveau compte 
 
@@ -94,6 +100,8 @@ Sinon
 }
 ```
 
+<hr>
+
 - <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Compte.php/{id}</span> : Supprimer un compte
 
 ```raw
@@ -115,8 +123,32 @@ sinon
     "message": "Erreur de suppression du compte"
 }
 ```
+<hr>
 
 <h3>Lecteur</h3>
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Lecteur.php/{id}</span> : Récupère un lecteur par son id  
+
+```raw
+GET localhost/BiblioPlaisir/api/Lecteur.php/2
+```
+
+Reponse 
+```json
+{
+    "id_lecteur": 2,
+    "id_compte": 2
+}
+```
+
+ou 
+```json
+{
+    "message": "Aucun lecteur trouvé"
+}
+```
+
+<hr>
 
 - <span style="color: #EF4;">POST localhost/BiblioPlaisir/api/Lecteur.php</span> : Ajouter un nouveau lecteur 
 
@@ -147,26 +179,7 @@ Sinon
 }
 ```
 
-- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Lecteur.php/{id}</span> : Récupère un lecteur par son id  
-
-```raw
-GET localhost/BiblioPlaisir/api/Lecteur.php/2
-```
-
-Reponse 
-```json
-{
-    "id_lecteur": 2,
-    "id_compte": 2
-}
-```
-
-ou 
-```json
-{
-    "message": "Aucun lecteur trouvé"
-}
-```
+<hr>
 
 - <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Lecteur.php/{id}</span> : Supprimer un lecteur par son id 
 
@@ -189,6 +202,8 @@ ou bien
     "message": "Erreur de suppression du lecteur"
 }
 ```
+
+<hr>
 
 <h3>Auteur</h3>
 
@@ -214,6 +229,8 @@ ou bien
     "message": "Aucun auteur trouvé"
 }
 ```
+
+<hr>
 
 - <span style="color: #EF4;">POST localhost/BiblioPlaisir/api/Auteur.php/{id}</span> : Créer un auteur
 
@@ -244,6 +261,7 @@ ou bien
     "message": "Erreur d'ajout de l'auteur"
 }
 ```
+<hr>
 
 - <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Auteur.php/{id}</span> : Supprimer un auteur par son id
 
@@ -261,5 +279,85 @@ ou bien
 ```json
 {
     "message": "Erreur de suppression du l'auteur"
+}
+```
+
+<hr>
+
+<h3>Administrateur</h3>
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Administrateur.php/{id}</span> : Recuperer un administrateur par son id
+
+```raw
+GET localhost/BiblioPlaisir/api/Administrateur.php/{id}
+```
+
+Reponse JSON : 
+
+```json
+{
+    "id_admin": 2,
+    "id_compte": 2
+}
+```
+
+ou bien 
+
+```json
+{
+    "message": "Aucun administrateur trouvé"
+}
+```
+
+<hr>
+
+- <span style="color: #EF4;">POST localhost/BiblioPlaisir/api/Administrateur.php</span> : Créer un administrateur
+
+```raw
+POST localhost/BiblioPlaisir/api/Administrateur.php
+```
+
+Body 
+
+```json
+{
+	"id_compte": 7
+}
+```
+
+Reponse JSON 
+
+```json
+{
+    "message": "Administrateur ajouté"
+}
+```
+
+ou bien 
+
+```json
+{
+    "message": "Erreur d'ajout de l'administrateur"
+}
+```
+
+<hr>
+
+- <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Administrateur.php/{id}</span> : Supprimer un administrateur par son id
+
+```raw
+DELETE localhost/BiblioPlaisir/api/Administrateur.php/{id}
+```
+
+```json
+{
+    "message": "Administrateur supprimé avec succès"
+}
+```
+ou bien 
+
+```json
+{
+    "message": "Erreur de suppression du l'administrateur"
 }
 ```
