@@ -11,7 +11,7 @@ Récupère les informations d'un compte selon le paramètre {email}
 GET localhost/BiblioPlaisir/api/Compte.php/raznambinintsoa3@gmail.com
 ```
 
-Reponse (JSON): 
+Réponse JSON : 
 ```json
 {
     "id_compte": 1,
@@ -47,7 +47,7 @@ Body
 }
 ```
 
-En cas de la réussite de la requête, voici le code JSON qui sera renvoyé : 
+Réponse JSON
 
 ```json
 {
@@ -84,7 +84,7 @@ Body
 }
 ```
 
-Reponse (JSON) si le compté est crée : 
+Réponse JSON :
 
 ```json
 {
@@ -108,7 +108,7 @@ Sinon
 DELETE localhost/BiblioPlaisir/api/Compte.php/4
 ```
 
-Si la suppression fonctionne, la reponse en JSON est : 
+Réponse JSON : 
 
 ```json
 {
@@ -123,6 +123,58 @@ sinon
     "message": "Erreur de suppression du compte"
 }
 ```
+<hr>
+
+<h3>Vocabulaire</h3>
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Vocabulaire.php/lecteur/{id_lecteur}</span> : Récuperer tous les vocabulaires enregistrés par un lecteur. 
+
+```raw
+GET localhost/BiblioPlaisir/api/Vocabulaire.php/lecteur/3
+```
+
+Réponse JSON 
+
+```json
+[
+    {
+        "id_vocabulaire": 1,
+        "id_lecteur": 3,
+        "mot": "jouer",
+        "definition_mot": "Se récréer, se divertir, s'amuser",
+        "date_ajout": "2024-06-06 21:57:54"
+    },
+    {
+        "id_vocabulaire": 2,
+        "id_lecteur": 3,
+        "mot": "exploiter",
+        "definition_mot": "Faire valoir une chose, en tirer le profit du produit",
+        "date_ajout": "2024-06-06 21:58:28"
+    }
+]
+```
+
+<hr>
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Vocabulaire.php/{id_vocabulaire}</span> : Récuperer un vocabulaire par son id
+
+```raw
+GET localhost/BiblioPlaisir/api/Vocabulaire.php/2
+```
+
+Réponse JSON : 
+
+```json
+{
+    "id_vocabulaire": 2,
+    "id_lecteur": 3,
+    "mot": "exploiter",
+    "definition_mot": "Faire valoir une chose, en tirer le profit du produit",
+    "date_ajout": "2024-06-06 21:58:28"
+}
+```
+
+
 <hr>
 
 <h3>Lecteur</h3>
