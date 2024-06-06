@@ -54,6 +54,21 @@
                     ], JSON_PRETTY_PRINT); 
                 }
                 break; 
+            case 'POST':
+                // endpoint : POST localhost/BiblioPlaisir/api/Compte.php
+                $donneesNouveauCompte = json_decode(file_get_contents('php://input'), true);
+                $nouveauCompte = $compte->creer($donneesNouveauCompte); 
+
+                if($nouveauCompte) {
+                    echo json_encode([
+                        'message' => "Compte créé avec succès"
+                    ], JSON_PRETTY_PRINT); 
+                }
+                else {
+                    echo json_encode([
+                        'message' => "Erreur de création du compte"
+                    ], JSON_PRETTY_PRINT); 
+                } 
         }
 
     }
