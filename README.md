@@ -115,3 +115,33 @@ sinon
     "message": "Erreur de suppression du compte"
 }
 ```
+
+<h3>Lecteur</h3>
+
+- <span style="color: #EF4;">POST localhost/BiblioPlaisir/api/Lecteur.php</span> : Ajouter un nouveau lecteur 
+
+```raw
+POST localhost/BiblioPlaisir/api/Lecteur.php
+```
+
+```json
+{
+    "id_compte": "3"
+}
+```
+
+Reponse (JSON) si le lecteur est ajouté : 
+
+```json
+{
+    "message": "Lecteur ajouté"
+}
+```
+
+Sinon 
+
+```json
+{
+    "message": "Erreur d'ajout du lecteur"
+}
+```
