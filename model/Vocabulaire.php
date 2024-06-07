@@ -35,7 +35,7 @@
             return $listeVocabulaire; 
         }
 
-        // endpoint : POST localhost/BiblioPlaisir/api/Vocabulaire.php/
+        // endpoint : POST localhost/BiblioPlaisir/api/Vocabulaire.php
         public function ajouter($donnees) {
             $sql = "INSERT INTO Vocabulaire(id_lecteur, mot, definition_mot) VALUES(:id_lecteur, :mot, :definition_mot);"; 
 

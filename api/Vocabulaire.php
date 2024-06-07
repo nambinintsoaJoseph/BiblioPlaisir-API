@@ -38,6 +38,7 @@
                 }
                 break; 
             case 'POST':
+                // endpoint : localhost/BiblioPlaisir/api/Vocabulaire.php
                 $donneesVocabulaire = json_decode(file_get_contents('php://input'), true); 
                 $nouveauVocabulaire = $vocabulaire->ajouter($donneesVocabulaire); 
 
@@ -53,6 +54,7 @@
                 }
                 break;
             case 'DELETE':
+                // endpoint : localhost/BiblioPlaisir/api/Vocabulaire.php/{id_vocabulaire}
                 $id_vocabulaire = recupererParametreSimple($_SERVER['REQUEST_URI']); 
                 $vocabulaireSupprime = $vocabulaire->supprimer($id_vocabulaire); 
                 

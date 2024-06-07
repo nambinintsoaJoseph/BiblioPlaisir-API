@@ -1,5 +1,7 @@
 <h2>Point de terminaison REST</h2>
 
+<br>
+
 <h3>Compte</h3>
 
 <hr>
@@ -124,6 +126,7 @@ sinon
 }
 ```
 <hr>
+<br><br>
 
 <h3>Vocabulaire</h3>
 
@@ -180,7 +183,7 @@ Réponse JSON :
 POST localhost/BiblioPlaisir/api/Vocabulaire.php
 ```
 
-BODY
+Body
 
 ```json
 {
@@ -230,7 +233,104 @@ Sinon
 }
 ```
 
+<hr> <br><br>
+
+<h3>Collection_livre</h3>
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Collection_livre.php/{id_collection}</span> : Récupère une collection par son id
+
+```raw
+GET localhost/BiblioPlaisir/api/Collection_livre.php/4
+```
+
+Réponse JSON 
+
+```json
+{
+    "id_collection": 4,
+    "id_livre": 3,
+    "id_lecteur": 1,
+    "date_collection": "2024-06-07 11:23:23"
+}
+```
 <hr>
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Collection_livre.php/lecteur/{id_lecteur}</span> : Récupérer toutes les collections de livres d'un lecteur 
+
+```raw
+GET localhost/BiblioPlaisir/api/Collection_livre.php/lecteur/{id_lecteur}
+```
+
+Réponse JSON 
+```json
+[
+    {
+        "id_collection": 1,
+        "id_livre": 2,
+        "id_lecteur": 1,
+        "date_collection": "2024-06-07 10:47:56"
+    },
+    {
+        "id_collection": 4,
+        "id_livre": 3,
+        "id_lecteur": 1,
+        "date_collection": "2024-06-07 11:23:23"
+    }
+]
+```
+
+- <span style="color: #EF4;">POST localhost/BiblioPlaisir/api/Collection_livre.php</span> : Ajouter un livre à la collection
+
+```raw
+POST localhost/BiblioPlaisir/api/Collection_livre.php
+```
+
+Body 
+
+```json
+{
+	"id_livre": 3, 
+    "id_lecteur": 1 
+}
+```
+Réponse JSON 
+
+```json
+{
+    "message": "Livre ajouté à la collection"
+}
+```
+
+Sinon 
+
+```json
+{
+    "message": "Erreur d'ajour du livre à la collection"
+}
+```
+
+- <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Collection_livre.php/{id_collection}</span> : Supprimer un livre à la collection 
+
+```raw
+DELETE localhost/BiblioPlaisir/api/Collection_livre.php/5
+```
+
+Réponse JSON : 
+```json
+{
+    "message": "Livre supprimé de votre collection"
+}
+```
+
+Sinon 
+
+```json
+{
+    "message": "Une erreur est survenue lors de la suppression du livre de votre collection"
+}
+```
+
+<hr><br><br>
 
 <h3>Lecteur</h3>
 
@@ -310,7 +410,7 @@ ou bien
 }
 ```
 
-<hr>
+<hr><br><br>
 
 <h3>Auteur</h3>
 
@@ -389,7 +489,7 @@ ou bien
 }
 ```
 
-<hr>
+<hr> <br><br>
 
 <h3>Administrateur</h3>
 
