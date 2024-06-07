@@ -10,7 +10,19 @@ class Administrateur {
 
     // endpoint : GET localhost/BiblioPlaisir/api/Administrateur.php/{id}
     public function recuperer($id) {
-        $sql = "SELECT * FROM Administrateur WHERE id_admin = :id_admin"; 
+        $sql = "SELECT 
+                    Compte.id_compte, 
+                    Compte.nom, 
+                    Compte.prenom, 
+                    Compte.date_naissance, 
+                    Compte.photo, 
+                    Compte.email, 
+                FROM Administrateur
+                JOIN 
+                    Compte ON Administrateur.id_compte = Compte.id_compte
+                WHERE 
+                    Administrateur.id_admin = :id_admin;
+        ";
 
         $requetePreparee = $this->conn->prepare($sql); 
         $requetePreparee->bindParam(':id_admin', $id); 

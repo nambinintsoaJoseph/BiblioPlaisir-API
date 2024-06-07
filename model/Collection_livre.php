@@ -10,7 +10,20 @@ class Collection_livre {
 
     // endpoint : GET localhost/BiblioPlaisir/api/Collection_livre.php/{id_collection}
     public function recuperer($id_collection) {
-        $sql = "SELECT * FROM Collection_livre WHERE id_collection = :id_collection;"; 
+        $sql = "SELECT  
+                    Collection_livre.date_collection,
+                    Livre.titre AS titre, 
+                    Livre.nombre_page AS nombre_page,
+                    Livre.photo_couverture AS photo_couverture,
+                    Livre.chemin AS chemin,
+                    Compte.nom AS nom_auteur, 
+                    Compte.prenom AS prenom_auteur
+                FROM Collection_livre
+                    INNER JOIN Livre ON Collection_livre.id_livre = Livre.id_livre
+                    INNER JOIN Auteur ON Livre.id_auteur = Auteur.id_auteur
+                    INNER JOIN Compte ON Auteur.id_compte = Compte.id_compte 
+                    WHERE id_collection = :id_collection;
+        "; 
 
         $requetePreparee = $this->conn->prepare($sql); 
         $requetePreparee->bindParam(':id_collection', $id_collection); 
@@ -22,7 +35,21 @@ class Collection_livre {
 
     // endpoint : GET localhost/BiblioPlaisir/api/Collection_livre.php/lecteur/{id_lecteur}
     public function recupererCollectionLecteur($id_lecteur) {
-        $sql = "SELECT * FROM Collection_livre WHERE id_lecteur = :id_lecteur"; 
+        $sql = "SELECT 
+                    Collection_livre.id_collection, 
+                    Collection_livre.date_collection,
+                    Livre.titre AS titre, 
+                    Livre.nombre_page AS nombre_page,
+                    Livre.photo_couverture AS photo_couverture,
+                    Livre.chemin AS chemin,
+                    Compte.nom AS nom_auteur, 
+                    Compte.prenom AS prenom_auteur
+                FROM Collection_livre
+                    INNER JOIN Livre ON Collection_livre.id_livre = Livre.id_livre
+                    INNER JOIN Auteur ON Livre.id_auteur = Auteur.id_auteur
+                    INNER JOIN Compte ON Auteur.id_compte = Compte.id_compte 
+                    WHERE id_lecteur = :id_lecteur;
+        ";
 
         $requetePreparee = $this->conn->prepare($sql); 
         $requetePreparee->bindParam(':id_lecteur', $id_lecteur); 

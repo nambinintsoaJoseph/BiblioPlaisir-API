@@ -20,11 +20,11 @@ Réponse JSON :
     "type_compte": "lecteur",
     "nom": "RAZANAKANAMBININTSOA",
     "prenom": "Joseph",
-    "date_naissance": "2000-12-01",
+    "date_naissance": "2003-12-01",
     "photo": null,
     "date_inscription": "2024-06-05 19:59:28",
     "email": "raznambinintsoa3@gmail.com",
-    "date_dernier_acces": "2024-06-05 19:57:58",
+    "date_dernier_acces": "2024-06-05 22:57:58",
     "message": "Compte trouv\u00e9"
 }
 ```
@@ -44,7 +44,7 @@ Body
     "nom": "Lucky", 
     "prenom": "Luck", 
     "date_naissance": "2010-04-04", 
-    "email": "testemail@test.com", 
+    "email": "luckyluck@gmail.com", 
     "mot_de_passe": "LuckyLuck"
 }
 ```
@@ -78,11 +78,11 @@ Body
 ```json
 {
 	"type_compte": "lecteur",
-	"nom": "test", 
-	"prenom": "test", 
+	"nom": "VEROHASINA", 
+	"prenom": "Stéphanie Alice", 
 	"date_naissance": "2002-02-02", 
-	"email": "test-test.com", 
-	"mot_de_passe": "test"
+	"email": "verohasina@gmail.com", 
+	"mot_de_passe": "password"
 }
 ```
 
@@ -247,10 +247,13 @@ Réponse JSON
 
 ```json
 {
-    "id_collection": 4,
-    "id_livre": 3,
-    "id_lecteur": 1,
-    "date_collection": "2024-06-07 11:23:23"
+    "date_collection": "2024-06-07 10:47:56",
+    "titre": "Mitaraina ny tany",
+    "nombre_page": 258,
+    "photo_couverture": "/upload/mitaraina_ny_tany.jpg",
+    "chemin": "/upload/book/mitaraina_ny_tany.pdf",
+    "nom_auteur": "ANDRAINA",
+    "prenom_auteur": "Andry"
 }
 ```
 <hr>
@@ -266,15 +269,23 @@ Réponse JSON
 [
     {
         "id_collection": 1,
-        "id_livre": 2,
-        "id_lecteur": 1,
-        "date_collection": "2024-06-07 10:47:56"
+        "date_collection": "2024-06-07 10:47:56",
+        "titre": "Mitaraina ny tany",
+        "nombre_page": 258,
+        "photo_couverture": "/upload/mitaraina_ny_tany.jpg",
+        "chemin": "/upload/book/mitaraina_ny_tany.pdf",
+        "nom_auteur": "ANDRAINA",
+        "prenom_auteur": "Andry"
     },
     {
         "id_collection": 4,
-        "id_livre": 3,
-        "id_lecteur": 1,
-        "date_collection": "2024-06-07 11:23:23"
+        "date_collection": "2024-06-07 11:23:23",
+        "titre": "Vakivakim-piainana",
+        "nombre_page": 75,
+        "photo_couverture": "/upload/vakivakim_piainana.jpg",
+        "chemin": "/upload/book/vakivakim_piainana.pdf",
+        "nom_auteur": "Irilanto Patrick",
+        "prenom_auteur": "ANDRIAMANGATIANA"
     }
 ]
 ```
@@ -343,8 +354,14 @@ GET localhost/BiblioPlaisir/api/Lecteur.php/2
 Reponse 
 ```json
 {
-    "id_lecteur": 2,
-    "id_compte": 2
+    "id_compte": 1,
+    "nom": "RAZANAKANAMBININTSOA",
+    "prenom": "Joseph",
+    "date_naissance": "2003-12-01",
+    "photo": null,
+    "date_inscription": "2024-06-07 10:26:34",
+    "email": "raznambinintsoa3@gmail.com",
+    "date_dernier_acces": "2024-06-05 22:57:58"
 }
 ```
 
@@ -394,7 +411,7 @@ Sinon
 DELETE localhost/BiblioPlaisir/api/Lecteur.php/{id}
 ```
 
-Reponse 
+Réponse JSON
 
 ```json
 {
@@ -424,8 +441,14 @@ Reponse JSON :
 
 ```json
 {
-    "id_auteur": 2,
-    "id_compte": 2
+    "id_compte": 2,
+    "nom": "Paul",
+    "prenom": "Jean",
+    "date_naissance": "1954-06-09",
+    "photo": null,
+    "date_inscription": "2024-06-07 10:28:51",
+    "email": "jean@gmail.com",
+    "date_dernier_acces": "2024-06-07 10:27:59"
 }
 ```
 
@@ -503,8 +526,12 @@ Reponse JSON :
 
 ```json
 {
-    "id_admin": 2,
-    "id_compte": 2
+    "id_compte": 3,
+    "nom": "Admin",
+    "prenom": "",
+    "date_naissance": "1999-06-04",
+    "photo": null,
+    "email": "admin@gmail.com",
 }
 ```
 

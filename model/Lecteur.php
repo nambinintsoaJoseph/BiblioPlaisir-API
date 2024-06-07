@@ -27,7 +27,22 @@ class Lecteur {
 
     // endpoint : GET localhost/BiblioPlaisir/api/Lecteur.php/{id}
     public function recuperer($id) {
-        $sql = "SELECT * FROM Lecteur WHERE id_lecteur = :id_lecteur"; 
+
+        $sql = "SELECT 
+                    Compte.id_compte, 
+                    Compte.nom, 
+                    Compte.prenom, 
+                    Compte.date_naissance, 
+                    Compte.photo, 
+                    Compte.date_inscription, 
+                    Compte.email, 
+                    Compte.date_dernier_acces
+                FROM Lecteur
+                JOIN 
+                    Compte ON Lecteur.id_compte = Compte.id_compte
+                WHERE 
+                    Lecteur.id_lecteur = :id_lecteur;
+        ";
 
         $requetePreparee = $this->conn->prepare($sql); 
         $requetePreparee->bindParam(':id_lecteur', $id); 
