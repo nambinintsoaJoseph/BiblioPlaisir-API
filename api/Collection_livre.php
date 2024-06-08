@@ -2,11 +2,11 @@
 
     header("Access-Control-Allow-Origin: *"); 
     header("Content-Type: application/json; charset=UTF-8");
-    header("Access-Control-Allow-Methods: GET, POST, DELETE");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"); 
 
-    $optionAutorise = ['GET', 'POST', 'DELETE']; 
+    $optionAutorise = ['GET', 'POST', 'PUT', 'DELETE']; 
     $methode = $_SERVER['REQUEST_METHOD']; 
 
     if(in_array($methode, $optionAutorise)) {
@@ -53,6 +53,22 @@
                     ], JSON_PRETTY_PRINT); 
                 }
                 break; 
+            case 'PUT':
+                // endpoint : PUT localhost/BiblioPlaisir/api/Collection_livre.php
+                $donneesCollection = json_decode(file_get_contents('php://input'), true);
+                $modificationCollection = $collectionLivre->modifier($donneesCollection); 
+
+                if($modificationCollection) {
+                    echo json_encode([
+                        'message' => "Collection à jour"
+                    ], JSON_PRETTY_PRINT);
+                }
+                else {
+                    echo json_encode([
+                        'message' => "Erreur de la mise à jour de la collection"
+                    ], JSON_PRETTY_PRINT);
+                }
+                break;
             case 'DELETE':
                 // endpoint : DELETE localhost/BiblioPlaisir/api/Collection_livre.php/{id_collection}
                 $id_collection = recupererParametreSimple($_SERVER['REQUEST_URI']); 

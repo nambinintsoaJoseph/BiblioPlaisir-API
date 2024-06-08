@@ -99,7 +99,23 @@ class Collection_livre {
         }
     }
     
+    // endpoint : PUT localhost/BiblioPlaisir/api/Collection_livre.php
+    public function modifier($donnees) {
+        $sql = "UPDATE Collection_livre SET nombre_page_lu = :nombre_page_lu WHERE id_collection = :id_collection;"; 
 
+        $requetePreparee = $this->conn->prepare($sql); 
+        $requetePreparee->bindParam(':nombre_page_lu', $donnees['nombre_page_lu']); 
+        $requetePreparee->bindParam(':id_collection', $donnees['id_collection']); 
+
+        $etat = $requetePreparee->execute(); 
+
+        if($etat) {
+            return true; 
+        }
+        else {
+            return false; 
+        }
+    }
 }
 
 ?>
