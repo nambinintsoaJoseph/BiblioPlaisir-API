@@ -2,9 +2,37 @@
 
 <br>
 
+<h3>Vocabulaire</h3>
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Vocabulaire.php/{mot}</span> : Récupère les défintions d'un mot en français.
+
+```raw
+GET localhost/BiblioPlaisir/api/Vocabulaire.php/ordinateur
+```
+
+Réponse JSON 
+```json
+{
+    "mot": "ordinateur",
+    "definition": {
+        "definition1": "Qui ordonne, met en ordre.",
+        "definition2": "Ordinant.",
+        "definition3": "Machine électronique de traitement de l'information, capable de classer, calculer et mémoriser, exécutant à grande vitesse les instructions d'un programme."
+    }
+}
+```
+
+Sinon 
+```json
+{
+    "message": "La méthode n'est pas autorisé"
+}
+```
+
+<hr><br><br>
+
 <h3>Compte</h3>
 
-<hr>
 
 - <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Compte.php/{email}</span> :
 Récupère les informations d'un compte selon le paramètre {email}
@@ -343,6 +371,112 @@ Sinon
 
 <hr><br><br>
 
+<h3>Commentaire</h3>
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Commentaire.php/{id_commentaire}</span> : Récuperer un commentaire par son id
+
+```raw
+GET localhost/BiblioPlaisir/api/Commentaire.php/2
+```
+
+Réponse JSON 
+
+```json
+{
+    "id_commentaire": 1,
+    "id_lecteur": 1,
+    "id_livre": 2,
+    "texte_commentaire": "Bon livre",
+    "date_commentaire": "2024-06-07 20:28:16"
+}
+```
+
+<hr>
+
+- <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Commentaire.php/livre/{id_livre}</span> : Récuperer les commentaires d'un livre
+
+```raw
+GET localhost/BiblioPlaisir/api/Commentaire.php/livre/2
+```
+
+Réponse JSON :
+
+```json
+[
+    {
+        "id_compte": 1,
+        "nom": "RAZANAKANAMBININTSOA",
+        "prenom": "Joseph",
+        "photo": null,
+        "texte_commentaire": "Bon livre",
+        "date_commentaire": "2024-06-07 20:28:16"
+    },
+    {
+        "id_compte": 4,
+        "nom": "Jean",
+        "prenom": "Pierre",
+        "photo": null,
+        "texte_commentaire": "Tsara be",
+        "date_commentaire": "2024-06-07 22:28:32"
+    }
+]
+```
+<hr>
+
+- <span style="color: #EF4;">POST localhost/BiblioPlaisir/api/Commentaire.php</span> : Ajouter un nouveau commentaire
+
+```raw
+POST localhost/BiblioPlaisir/api/Commentaire.php
+```
+
+Body 
+```json
+{
+    "id_lecteur": "2",
+    "id_livre": "2",
+    "texte_commentaire": "J'adore"
+}    
+```
+
+Réponse JSON 
+```json
+{
+    "message": "Le commentaire a été ajouté"
+}
+```
+
+Sinon 
+```json
+{
+    "message": "Erreur d'ajout du commentaire"
+}
+```
+
+<hr>
+
+- <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Commentaire.php/{id_commentaire}</span> : Supprimer un commentaire
+
+```raw
+DELETE localhost/BiblioPlaisir/api/Commentaire.php/3
+```
+
+Réponse JSON 
+```json
+{
+    "message": "Commentaire supprimé"
+}
+```
+
+Sinon 
+
+```json
+{
+    "message": "Erreur de suppression du commentaire"
+}
+```
+
+<hr><br><br>
+
 <h3>Lecteur</h3>
 
 - <span style="color: #EF4;">GET localhost/BiblioPlaisir/api/Lecteur.php/{id}</span> : Récupère un lecteur par son id  
@@ -426,6 +560,7 @@ ou bien
     "message": "Erreur de suppression du lecteur"
 }
 ```
+
 
 <hr><br><br>
 
