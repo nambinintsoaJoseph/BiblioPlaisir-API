@@ -38,6 +38,7 @@ class Collection_livre {
         $sql = "SELECT 
                     Collection_livre.id_collection, 
                     Collection_livre.date_collection,
+                    Collection_livre.nombre_page_lu,
                     Livre.titre AS titre, 
                     Livre.nombre_page AS nombre_page,
                     Livre.photo_couverture AS photo_couverture,
@@ -65,7 +66,7 @@ class Collection_livre {
 
     // endpoint : POST localhost/BiblioPlaisir/api/Collection_livre.php 
     public function ajouter($donnees) {
-        $sql = "INSERT INTO Collection_livre(id_livre, id_lecteur) VALUES(:id_livre, :id_lecteur);"; 
+        $sql = "INSERT INTO Collection_livre(id_livre, id_lecteur, nombre_page_lu) VALUES(:id_livre, :id_lecteur, 0);"; 
 
         $requetePreparee = $this->conn->prepare($sql); 
         $requetePreparee->bindParam(':id_livre', $donnees['id_livre']); 

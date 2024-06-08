@@ -63,22 +63,11 @@ CREATE TABLE IF NOT EXISTS Collection_livre(
     id_collection BIGINT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     id_livre BIGINT(11) UNSIGNED NOT NULL, 
     id_lecteur BIGINT(11) UNSIGNED NOT NULL, 
+    nombre_page_lu INT(4) UNSIGNED NOT NULL,
     date_collection DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, 
     FOREIGN KEY (id_livre) REFERENCES Livre(id_livre), 
     FOREIGN KEY (id_lecteur) REFERENCES Lecteur(id_lecteur), 
     PRIMARY KEY (id_collection)
-) ENGINE=InnoDB; 
-
-CREATE TABLE IF NOT EXISTS Lecture_livre(
-    id_lecture BIGINT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-    id_lecteur BIGINT(11) UNSIGNED NOT NULL, 
-    id_livre BIGINT(11) UNSIGNED NOT NULL, 
-    nb_page_lu INT(4) NOT NULL, 
-    duree_lecture INT(3), 
-    date_commencement DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-    FOREIGN KEY (id_lecteur) REFERENCES Lecteur(id_lecteur), 
-    FOREIGN KEY (id_livre) REFERENCES Livre(id_livre), 
-    PRIMARY KEY (id_lecture)
 ) ENGINE=InnoDB; 
 
 CREATE TABLE IF NOT EXISTS Commentaire(
