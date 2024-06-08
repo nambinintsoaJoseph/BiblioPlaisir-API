@@ -14,6 +14,7 @@ class Collection_livre {
                     Collection_livre.date_collection,
                     Livre.titre AS titre, 
                     Livre.nombre_page AS nombre_page,
+                    Collection_livre.nombre_page_lu AS nombre_page_lu, 
                     Livre.photo_couverture AS photo_couverture,
                     Livre.chemin AS chemin,
                     Compte.nom AS nom_auteur, 
@@ -38,9 +39,9 @@ class Collection_livre {
         $sql = "SELECT 
                     Collection_livre.id_collection, 
                     Collection_livre.date_collection,
-                    Collection_livre.nombre_page_lu,
                     Livre.titre AS titre, 
                     Livre.nombre_page AS nombre_page,
+                    Collection_livre.nombre_page_lu,
                     Livre.photo_couverture AS photo_couverture,
                     Livre.chemin AS chemin,
                     Compte.nom AS nom_auteur, 
