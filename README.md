@@ -350,6 +350,40 @@ Sinon
 }
 ```
 
+<hr>
+
+- <span style="color: #EF4;">PUT localhost/BiblioPlaisir/api/Collection_livre.php</span> : Modifier le nombre de page lu pour un livre
+
+```raw
+PUT localhost/BiblioPlaisir/api/Collection_livre.php
+```
+
+Body 
+
+```raw
+{
+    "id_collection": 1, 
+    "nombre_page_lu": 15
+}
+```
+
+Réponse JSON 
+
+```json
+{
+    "message": "Collection à jour"
+}
+```
+Sinon 
+
+```json
+{
+    "message": "Erreur de la mise à jour de la collection"
+}
+```
+
+<hr>
+
 - <span style="color: #EF4;">DELETE localhost/BiblioPlaisir/api/Collection_livre.php/{id_collection}</span> : Supprimer un livre à la collection 
 
 ```raw
