@@ -19,6 +19,7 @@ class Compte {
                     date_naissance, 
                     photo, date_inscription, 
                     email, 
+                    mot_de_passe,
                     date_dernier_acces 
                 FROM Compte 
                 WHERE email=:email";
@@ -65,6 +66,8 @@ class Compte {
         $requetePreparee->bindParam(':prenom', $donnees['prenom']); 
         $requetePreparee->bindParam(':date_naissance', $donnees['date_naissance']); 
         $requetePreparee->bindParam(':email', $donnees['email']); 
+
+        $donnees['mot_de_passe'] = password_hash($donnees['mot_de_passe'], PASSWORD_DEFAULT); 
         $requetePreparee->bindParam(':mot_de_passe', $donnees['mot_de_passe']); 
 
         $etat = $requetePreparee->execute(); 
