@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS Compte(
     date_inscription DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     email VARCHAR(40) NOT NULL, 
     mot_de_passe TEXT NOT NULL, 
-    date_dernier_acces DATETIME NOT NULL,
     PRIMARY KEY (id_compte)
 ) ENGINE=InnoDB; 
 
@@ -51,7 +50,7 @@ CREATE TABLE IF NOT EXISTS Livre(
     editeur VARCHAR(10), 
     genre VARCHAR(15) NOT NULL, 
     date_importaion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-    photo_couverture VARCHAR(50) NOT NULL, 
+    photo_couverture VARCHAR(255) NOT NULL, 
     resumer TEXT NOT NULL, 
     classe_age VARCHAR(5), 
     chemin VARCHAR(50) NOT NULL, 
