@@ -116,6 +116,25 @@ class Collection_livre {
             return false; 
         }
     }
+
+    // Pour vérifier si un livre appartient à la collection d'un lecteur : 
+    public function possederCollection($id_collection, $id_lecteur) {
+        $sql = "SELECT id_lecteur FROM Collection_livre WHERE id_collection = :id_collection";
+
+        $requetePreparee = $this->conn->prepare($sql); 
+        $requetePreparee->bindParam(':id_collection', $id_collection); 
+
+        $requetePreparee->execute(); 
+
+        $infoCollection = $requetePreparee->fetch(PDO::FETCH_ASSOC); 
+
+        if($infoCollection['id_lecteur'] == $id_lecteur) {
+            return true; 
+        } else {
+            return false; 
+        }
+
+    }
 }
 
 ?>
