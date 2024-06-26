@@ -35,7 +35,7 @@
                     "iss" => "localhost/BiblioPlaisir",
                     "iat" => time(),
                     "nbf" => time(),
-                    "exp" => time() + 7200, // Le token expire dans 2 heure
+                    "exp" => time() + 7200, //  2 heures
                     "data" => array(
                         "id_compte" => $informationsCompte['id_compte'], 
                         "id_lecteur" => $id_lecteur['id_lecteur'], 
@@ -58,7 +58,7 @@
             ]); 
             http_response_code(200); 
 
-            print_r($jwt->decoderToken($token)); 
+            // print_r($jwt->decoderToken($token)); 
             
         }
         else {

@@ -6,6 +6,8 @@
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"); 
 
+    require '../model/JWTManagement.php';
+
     $optionAutorise = ['GET', 'POST', 'DELETE']; 
     $methode = $_SERVER['REQUEST_METHOD']; 
 
@@ -15,6 +17,8 @@
         require_once('../model/Vocabulaire.php'); 
         include('fonctions.php'); 
 
+        $token_decode = verifierToken('lecteur');
+
         $baseDeDonnees = new BaseDeDonnees(); 
         $connexion = $baseDeDonnees->recupererConnexion(); 
         $vocabulaire = new Vocabulaire($connexion); 
@@ -23,11 +27,17 @@
             CASE 'GET':
                 $segments = explode('/', rtrim($_SERVER['REQUEST_URI'], '/'));
                 if($segments[4] == 'lecteur') {
-                    // endpoint : localhost/BiblioPlaisir/api/Vocabulaire.php/lecteur/{id_lecteur}
+                    // endpoint : GET localhost/BiblioPlaisir/api/Vocabulaire.php/lecteur/{id_lecteur}
                     $id_lecteur = recupererParametreSimple($_SERVER['REQUEST_URI']); 
-                    $vocabulaireLecteur = $vocabulaire->recupererVocabulairesLecteur($id_lecteur); 
-
-                    echo json_encode($vocabulaireLecteur, JSON_PRETTY_PRINT); 
+                    if($id_lecteur == $token_decode->data->id_lecteur) {
+                        $vocabulaireLecteur = $vocabulaire->recupererVocabulairesLecteur($id_lecteur);
+                        echo json_encode($vocabulaireLecteur, JSON_PRETTY_PRINT); 
+                    }
+                    else {
+                        echo json_encode([
+                            'message' => "Cette liste de vocabulaire ne vous appartient pas" 
+                        ]);
+                    }
                 }
                 else {
                     // endpoint : localhost/BiblioPlaisir/api/Vocabulaire.php/{id_vocabulaire}
