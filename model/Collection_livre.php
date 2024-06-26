@@ -133,7 +133,54 @@ class Collection_livre {
         } else {
             return false; 
         }
+    }
 
+    // endpoint : GET localhost/BiblioPlaisir/api/Collection_livre.php/stat4mois/{id_lecteur}
+    public function statistique4Mois($id_lecteur) {
+        $sql = "
+            SELECT 
+                CASE
+                    WHEN MONTH(date_collection) = 1 THEN 'janvier'
+                    WHEN MONTH(date_collection) = 2 THEN 'février'
+                    WHEN MONTH(date_collection) = 3 THEN 'mars'
+                    WHEN MONTH(date_collection) = 4 THEN 'avril'
+                    WHEN MONTH(date_collection) = 5 THEN 'mai'
+                    WHEN MONTH(date_collection) = 6 THEN 'juin'
+                    WHEN MONTH(date_collection) = 7 THEN 'juillet'
+                    WHEN MONTH(date_collection) = 8 THEN 'août'
+                    WHEN MONTH(date_collection) = 9 THEN 'septembre'
+                    WHEN MONTH(date_collection) = 10 THEN 'octobre'
+                    WHEN MONTH(date_collection) = 11 THEN 'novembre'
+                    WHEN MONTH(date_collection) = 12 THEN 'décembre'
+                END AS mois,
+                COUNT(*) AS nombre_livre_lu
+            FROM 
+                Collection_livre cl
+            JOIN 
+                Livre l ON cl.id_livre = l.id_livre
+            WHERE 
+                cl.nombre_page_lu = l.nombre_page
+                AND cl.id_lecteur = :id_lecteur
+                AND date_collection >= DATE_SUB(CURDATE(), INTERVAL 4 MONTH)
+            GROUP BY 
+                mois
+            ORDER BY 
+                date_collection DESC
+        ";
+
+        $requetePreparee = $this->conn->prepare($sql); 
+        $requetePreparee->bindParam(':id_lecteur', $id_lecteur); 
+        $requetePreparee->execute();
+
+        $resultat = $requetePreparee->fetchAll(PDO::FETCH_ASSOC);
+
+        // Mois comme clé : 
+        $livreLu = []; 
+        foreach($resultat as $row) {
+            $livreLu[$row['mois']] = (int)$row['nombre_livre_lu'];
+        }
+
+        return $livreLu;
     }
 }
 
