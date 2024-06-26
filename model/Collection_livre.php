@@ -137,35 +137,43 @@ class Collection_livre {
 
     // endpoint : GET localhost/BiblioPlaisir/api/Collection_livre.php/stat4mois/{id_lecteur}
     public function statistique4Mois($id_lecteur) {
-        $sql = "
+        $sql = "WITH LastFourMonths AS (
+                SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 0 MONTH), '%M') AS mois
+                UNION ALL
+                SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%M')
+                UNION ALL
+                SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 2 MONTH), '%M')
+                UNION ALL
+                SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 3 MONTH), '%M')
+            )
             SELECT 
-                CASE
-                    WHEN MONTH(date_collection) = 1 THEN 'janvier'
-                    WHEN MONTH(date_collection) = 2 THEN 'février'
-                    WHEN MONTH(date_collection) = 3 THEN 'mars'
-                    WHEN MONTH(date_collection) = 4 THEN 'avril'
-                    WHEN MONTH(date_collection) = 5 THEN 'mai'
-                    WHEN MONTH(date_collection) = 6 THEN 'juin'
-                    WHEN MONTH(date_collection) = 7 THEN 'juillet'
-                    WHEN MONTH(date_collection) = 8 THEN 'août'
-                    WHEN MONTH(date_collection) = 9 THEN 'septembre'
-                    WHEN MONTH(date_collection) = 10 THEN 'octobre'
-                    WHEN MONTH(date_collection) = 11 THEN 'novembre'
-                    WHEN MONTH(date_collection) = 12 THEN 'décembre'
+                CASE 
+                    WHEN mois = 'January' THEN 'janvier'
+                    WHEN mois = 'February' THEN 'février'
+                    WHEN mois = 'March' THEN 'mars'
+                    WHEN mois = 'April' THEN 'avril'
+                    WHEN mois = 'May' THEN 'mai'
+                    WHEN mois = 'June' THEN 'juin'
+                    WHEN mois = 'July' THEN 'juillet'
+                    WHEN mois = 'August' THEN 'août'
+                    WHEN mois = 'September' THEN 'septembre'
+                    WHEN mois = 'October' THEN 'octobre'
+                    WHEN mois = 'November' THEN 'novembre'
+                    WHEN mois = 'December' THEN 'décembre'
                 END AS mois,
-                COUNT(*) AS nombre_livre_lu
+                COALESCE(SUM(cl.nombre_page_lu = l.nombre_page), 0) AS nombre_livre_lu
             FROM 
-                Collection_livre cl
-            JOIN 
+                LastFourMonths m
+            LEFT JOIN 
+                Collection_livre cl ON DATE_FORMAT(cl.date_collection, '%M') = m.mois
+            LEFT JOIN 
                 Livre l ON cl.id_livre = l.id_livre
-            WHERE 
-                cl.nombre_page_lu = l.nombre_page
                 AND cl.id_lecteur = :id_lecteur
-                AND date_collection >= DATE_SUB(CURDATE(), INTERVAL 4 MONTH)
+                AND cl.date_collection >= DATE_SUB(CURDATE(), INTERVAL 4 MONTH)
             GROUP BY 
                 mois
             ORDER BY 
-                date_collection DESC
+                STR_TO_DATE(CONCAT(mois, ' 1'), '%M %d');
         ";
 
         $requetePreparee = $this->conn->prepare($sql); 
